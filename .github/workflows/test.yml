@@ -42,13 +42,10 @@ jobs:
       ROS2_REPOS_FILE_URL: 'https://raw.githubusercontent.com/ros2/ros2/${{ matrix.distro }}/ros2.repos'
     steps:
     - uses: actions/checkout@v3
-    - uses: ros-tooling/setup-ros@master
+    - uses: ros-tooling/setup-ros@christophebedard/apt-over-pip
       with:
         required-ros-distributions: ${{ matrix.build-type == 'binary' && matrix.distro || '' }}
         use-ros2-testing: true
-    - name: Pin mypy==0.942
-      run: |
-        python3 -m pip install 'mypy==0.942'
     - uses: ros-tooling/action-ros-ci@master
       with:
         package-name: >
