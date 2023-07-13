@@ -45,6 +45,7 @@ remote: push-remote
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
+	sudo rm -rf /usr/local/include/tracetools
 
 # ==================================
 # Build
@@ -64,7 +65,7 @@ build:
 	cd $(BUILD_DIR) && $(MAKE) -j $(NUM_PROCS)
 	# Install so that we can use the library in other projects.
 	cd $(BUILD_DIR) && sudo $(MAKE) install
-		
+
 #	Install the project...
 #	-- Install configuration: ""
 #	-- Up-to-date: /usr/local/include/tracetools
