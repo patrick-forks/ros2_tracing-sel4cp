@@ -14,7 +14,7 @@
 // limitations under the License.
 
 #include <stdbool.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 #include "tracetools/config.h"
 #include "tracetools/status.h"
@@ -32,7 +32,7 @@ int tracetools_status(bool trace_compile_status_enabled)
   }
 #else
   (void)trace_compile_status_enabled;
-  printf("Tracing disabled through configuration\n");
+//  printf("Tracing disabled through configuration\n");
   return 1;
 #endif
 }
