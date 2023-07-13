@@ -64,3 +64,13 @@ build:
 	cd $(BUILD_DIR) && $(MAKE) -j $(NUM_PROCS)
 	# Install so that we can use the library in other projects.
 	cd $(BUILD_DIR) && sudo $(MAKE) install
+		
+#	Install the project...
+#	-- Install configuration: ""
+#	-- Up-to-date: /usr/local/include/tracetools
+#	-- Up-to-date: /usr/local/include/tracetools/tracetools
+#	-- Installing: /usr/local/include/tracetools/tracetools/status.h
+#	-- Installing: /usr/local/include/tracetools/tracetools/utils.hpp
+#	-- Installing: /usr/local/include/tracetools/tracetools/visibility_control.hpp
+#	-- Installing: /usr/local/include/tracetools/tracetools/config.h
+#	-- Installing: /usr/local/include/tracetools/tracetools/tracetools.h
