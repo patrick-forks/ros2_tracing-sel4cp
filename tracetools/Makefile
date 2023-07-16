@@ -1,6 +1,7 @@
 SHELL = /bin/zsh
 PWD_DIR = "$(shell basename $$(pwd))"
 BUILD_DIR = build
+INSTALL_DIR = ~/ros2
 
 # ==================================
 # Pushes the current directory to remote host.
@@ -45,7 +46,7 @@ remote: push-remote
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
-	sudo rm -rf /usr/local/include/tracetools
+	rm -rf $(INSTALL_DIR)/include/tracetools
 
 # ==================================
 # Build
@@ -61,17 +62,8 @@ build:
 		-DTRACETOOLS_DISABLED=1 \
 		-DTRACETOOLS_NO_RDYNAMIC=1 \
 		-DTRACETOOLS_STATUS_CHECKING_TOOL=0 \
+		-DCMAKE_INSTALL_PREFIX=$(INSTALL_DIR) \
 		-DCMAKE_MODULE_PATH=./
 	cd $(BUILD_DIR) && $(MAKE) -j $(NUM_PROCS)
 	# Install so that we can use the library in other projects.
-	cd $(BUILD_DIR) && sudo $(MAKE) install
-
-#	Install the project...
-#	-- Install configuration: ""
-#	-- Up-to-date: /usr/local/include/tracetools
-#	-- Up-to-date: /usr/local/include/tracetools/tracetools
-#	-- Installing: /usr/local/include/tracetools/tracetools/status.h
-#	-- Installing: /usr/local/include/tracetools/tracetools/utils.hpp
-#	-- Installing: /usr/local/include/tracetools/tracetools/visibility_control.hpp
-#	-- Installing: /usr/local/include/tracetools/tracetools/config.h
-#	-- Installing: /usr/local/include/tracetools/tracetools/tracetools.h
+	cd $(BUILD_DIR) && $(MAKE) install
